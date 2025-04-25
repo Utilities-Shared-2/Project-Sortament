@@ -1,4 +1,120 @@
 <head>
     <title>Project Sortament</title>
-    <
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        h1 {
+            font-size: 100px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+            transition: color 1s ease, text-shadow 1s ease;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            z-index: 2;
+            transition: transform 0.8s ease, opacity 0.6s ease-out;
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 40px;
+            color: white;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 5px
+        }
+        .button:hover {
+            background: rgba(255, 255, 255, 1);
+            color: black;
+            font-size: 50px;
+        }
+        #western:hover {
+            background: rgba(79, 38, 131,1);
+            color: white;
+        }
+        #ripple {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            transition: width 1s ease, height 1s ease, opacity 0.5s ease;
+            filter: blur(20px);
+            opacity: 0.7;
+        }
+    </style>
 </head>
+<body>
+    <video id= "video" class="background" autoplay muted loop>
+        <source src="../static/media/1050 Final.mov" type="video/mp4">
+            Your browser does not support the video tag.
+    </video>
+    <div id="ripple"></div>
+    <div class="container">
+        <h1>Project Sortament</h1>
+        <button class="button" id="western" onclick="nextPage(1)">Login with Western ID</button>
+        <button class="button" onclick="nextPage(2)">Login with Credential</button>
+        <button class="button" onclick="nextPage(3)">Sign-up</button>
+    </div>
+
+</body>
+<script>
+    function nextPage(id){
+        const ripple = document.getElementById('ripple');
+        ripple.style.width = '3000px';
+        ripple.style.height = '3000px';
+        ripple.style.opacity = '1';
+        const heading = document.querySelector('h1');
+        heading.style.color = '#000000';
+        heading.style.textShadow = '2px 2px 5px rgba(0,0,0,0.5)';
+        const container = document.querySelector('.container');
+        container.style.transform = 'scale(2)';
+        container.style.opacity = '0';
+        setTimeout(() => {
+            document.body.style.background = '#ffffff'; // Corrected here
+            const video = document.getElementById('video');
+            video.pause();
+        }, 1000);
+    }
+</script>
+<!--
+idea pad:
+    - dynamic scaling,  mobile vs web
+    - blur back ground when finished
+    - understand how cookies are stored
+-->
+
+
